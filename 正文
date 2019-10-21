@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+FILE *fp;
+int main()
+{
+    int zifu=0,danci=0,kongbai=0,duanluo=0;
+    char ch;
+    char fname[1000];
+    printf("请输入需要打开的英文文本文件名：\n");
+    scanf("%s",fname);
+    if((fp=fopen(fname,"r"))==NULL)
+    {
+        printf("文件不存在！\n");
+        exit(0);
+    }
+    ch=fgetc(fp);
+    printf("\n该文本内容如下：\n");
+    while(ch!=EOF)
+    {
+    if(ch==' ')
+        kongbai++;
+    else if((ch>='!'&&ch<='~'))
+        zifu++;
+    else if(ch==10||ch==13)
+        duanluo++;
+    putchar(ch);
+    ch=fgetc(fp);
+    }
+    fclose(fp);
+    printf("\n\n上述文本中空白的数目:%d\n",kongbai);
+    printf("\n上述文本中字符的数目:%d\n",zifu);
+    printf("\n上述文本中段落的数目:%d\n",duanluo+1);
+    printf("\n上述文本中单词的数目:%d\n",danci);
+}
+运行结果如下
+请输入需要打开的英文文本文件名：
+C:\Users\lenovo\Desktop\B.txt
+。。。中间显示为文本所有内容
+该文本内容如下：
+
+上述文本中空白的数目:143
+
+上述文本中字符的数目:486
+
+上述文本中段落的数目:35
+
+上述文本中单词的数目:0
